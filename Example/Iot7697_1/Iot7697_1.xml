@@ -1,0 +1,355 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="initializes_setup" id="1" x="738" y="488">
+    <statement name="CONTENT">
+      <block type="serial_init" id="203">
+        <field name="SPEED">9600</field>
+      </block>
+    </statement>
+    <next>
+      <block type="initializes_loop" id="2">
+        <statement name="CONTENT">
+          <block type="variables_set" id="132" inline="true">
+            <field name="TYPE">Number</field>
+            <field name="VAR">fire</field>
+            <value name="VALUE">
+              <block type="inout_digital_read" id="129">
+                <field name="PIN">11</field>
+              </block>
+            </value>
+            <next>
+              <block type="serial_println" id="211" inline="false">
+                <value name="CONTENT">
+                  <block type="text_join" id="219" inline="false">
+                    <mutation items="2"></mutation>
+                    <value name="ADD0">
+                      <block type="text" id="212">
+                        <field name="TEXT">fire: </field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="variables_get" id="224">
+                        <field name="TYPE">Number</field>
+                        <field name="VAR">fire</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_if" id="319" inline="false">
+                    <value name="IF0">
+                      <block type="logic_compare" id="334" inline="true">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="variables_get" id="328">
+                            <field name="TYPE">Number</field>
+                            <field name="VAR">fire</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="349">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="tone" id="360">
+                        <field name="PIN">10</field>
+                        <field name="FREQ">330</field>
+                        <next>
+                          <block type="delay_custom" id="394" inline="false">
+                            <value name="DELAY_TIME">
+                              <block type="math_number" id="395">
+                                <field name="NUM">100</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="no_tone" id="367">
+                                <field name="PIN">10</field>
+                                <next>
+                                  <block type="delay_custom" id="396" inline="false">
+                                    <value name="DELAY_TIME">
+                                      <block type="math_number" id="397">
+                                        <field name="NUM">100</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="variables_set" id="458" inline="true">
+                        <field name="TYPE">Number</field>
+                        <field name="VAR">rain</field>
+                        <value name="VALUE">
+                          <block type="inout_custom_analog_read" id="447" inline="true">
+                            <value name="PIN_ANALOGREAD">
+                              <block type="math_number" id="448">
+                                <field name="NUM">14</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="serial_println" id="459" inline="false">
+                            <value name="CONTENT">
+                              <block type="text_join" id="460" inline="false">
+                                <mutation items="2"></mutation>
+                                <value name="ADD0">
+                                  <block type="text" id="461">
+                                    <field name="TEXT">rain: </field>
+                                  </block>
+                                </value>
+                                <value name="ADD1">
+                                  <block type="variables_get" id="462">
+                                    <field name="TYPE">Number</field>
+                                    <field name="VAR">rain</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="controls_if" id="463" inline="false">
+                                <value name="IF0">
+                                  <block type="logic_compare" id="464" inline="true">
+                                    <field name="OP">GT</field>
+                                    <value name="A">
+                                      <block type="variables_get" id="465">
+                                        <field name="TYPE">Number</field>
+                                        <field name="VAR">rain</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="math_number" id="466">
+                                        <field name="NUM">200</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="DO0">
+                                  <block type="tone" id="467">
+                                    <field name="PIN">10</field>
+                                    <field name="FREQ">349</field>
+                                    <next>
+                                      <block type="delay_custom" id="468" inline="false">
+                                        <value name="DELAY_TIME">
+                                          <block type="math_number" id="469">
+                                            <field name="NUM">100</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="no_tone" id="470">
+                                            <field name="PIN">10</field>
+                                            <next>
+                                              <block type="delay_custom" id="471" inline="false">
+                                                <value name="DELAY_TIME">
+                                                  <block type="math_number" id="472">
+                                                    <field name="NUM">100</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="variables_set" id="492" inline="true">
+                                    <field name="TYPE">Number</field>
+                                    <field name="VAR">temp</field>
+                                    <value name="VALUE">
+                                      <block type="dht_read" id="485">
+                                        <field name="SENSOR">DHT11</field>
+                                        <field name="PIN">12</field>
+                                        <field name="TYPE">C</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="variables_set" id="501" inline="true">
+                                        <field name="TYPE">Number</field>
+                                        <field name="VAR">humid</field>
+                                        <value name="VALUE">
+                                          <block type="dht_read" id="502">
+                                            <field name="SENSOR">DHT11</field>
+                                            <field name="PIN">12</field>
+                                            <field name="TYPE">h</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="serial_println" id="503" inline="false">
+                                            <value name="CONTENT">
+                                              <block type="text_join" id="504" inline="false">
+                                                <mutation items="2"></mutation>
+                                                <value name="ADD0">
+                                                  <block type="text" id="505">
+                                                    <field name="TEXT">Temp: </field>
+                                                  </block>
+                                                </value>
+                                                <value name="ADD1">
+                                                  <block type="variables_get" id="506">
+                                                    <field name="TYPE">Number</field>
+                                                    <field name="VAR">temp</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="serial_println" id="507" inline="false">
+                                                <value name="CONTENT">
+                                                  <block type="text_join" id="508" inline="false">
+                                                    <mutation items="2"></mutation>
+                                                    <value name="ADD0">
+                                                      <block type="text" id="509">
+                                                        <field name="TEXT">Humid: </field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="ADD1">
+                                                      <block type="variables_get" id="510">
+                                                        <field name="TYPE">Number</field>
+                                                        <field name="VAR">humid</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="variables_set" id="536" inline="true">
+                                                    <field name="TYPE">Number</field>
+                                                    <field name="VAR">light</field>
+                                                    <value name="VALUE">
+                                                      <block type="inout_digital_read" id="537">
+                                                        <field name="PIN">13</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="serial_println" id="528" inline="false">
+                                                        <value name="CONTENT">
+                                                          <block type="text_join" id="529" inline="false">
+                                                            <mutation items="2"></mutation>
+                                                            <value name="ADD0">
+                                                              <block type="text" id="530">
+                                                                <field name="TEXT">Light: </field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="ADD1">
+                                                              <block type="variables_get" id="531">
+                                                                <field name="TYPE">Number</field>
+                                                                <field name="VAR">light</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="controls_if" id="585" inline="false">
+                                                            <mutation else="1"></mutation>
+                                                            <value name="IF0">
+                                                              <block type="logic_compare" id="594" inline="true">
+                                                                <field name="OP">EQ</field>
+                                                                <value name="A">
+                                                                  <block type="variables_get" id="595">
+                                                                    <field name="TYPE">Number</field>
+                                                                    <field name="VAR">light</field>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="B">
+                                                                  <block type="math_number" id="596">
+                                                                    <field name="NUM">0</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                            <statement name="DO0">
+                                                              <block type="inout_analog_write" id="572" inline="true">
+                                                                <field name="PIN">4</field>
+                                                                <value name="NUM">
+                                                                  <block type="math_number" id="573">
+                                                                    <field name="NUM">0</field>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="inout_analog_write" id="574" inline="true">
+                                                                    <field name="PIN">5</field>
+                                                                    <value name="NUM">
+                                                                      <block type="math_number" id="575">
+                                                                        <field name="NUM">0</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="inout_analog_write" id="576" inline="true">
+                                                                        <field name="PIN">3</field>
+                                                                        <value name="NUM">
+                                                                          <block type="math_number" id="577">
+                                                                            <field name="NUM">0</field>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </statement>
+                                                            <statement name="ELSE">
+                                                              <block type="inout_analog_write" id="548" inline="true">
+                                                                <field name="PIN">4</field>
+                                                                <value name="NUM">
+                                                                  <block type="math_number" id="549">
+                                                                    <field name="NUM">255</field>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="inout_analog_write" id="550" inline="true">
+                                                                    <field name="PIN">5</field>
+                                                                    <value name="NUM">
+                                                                      <block type="math_number" id="551">
+                                                                        <field name="NUM">255</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="inout_analog_write" id="552" inline="true">
+                                                                        <field name="PIN">3</field>
+                                                                        <value name="NUM">
+                                                                          <block type="math_number" id="553">
+                                                                            <field name="NUM">255</field>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </statement>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>
